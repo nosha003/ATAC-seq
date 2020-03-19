@@ -9,5 +9,5 @@ Steps for processing ATAC-seq datasets
 7) samstat for read alignment statistics
 8) merge reps if necessary
 9) generate 100bp bin files and calculate cpm
-10) QC final data with metaplot and IGV file (bedgraph and bigwig) creation
+10) QC final data with metaplot and IGV file (bedgraph and tdf) creation
 11) call MACs peaks
