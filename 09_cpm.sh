@@ -11,7 +11,7 @@
 
 cd /scratch.global/nosha003/atac/
 module load R/3.5.0
-R CMD BATCH all.2.uniq.cpm.R
+R CMD BATCH 09_cpm.R
 wait
 
 # qsub /scratch.global/nosha003/atac/cpm.sh
