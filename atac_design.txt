@@ -1,0 +1,8 @@
+/scratch.global/nosha003/atac  BN1A_S1_R1_001 BN1A_S1_R2_001  BN1A  TAAGGCGA
+/scratch.global/nosha003/atac  BN2A_S2_R1_001 BN2A_S2_R2_001  BN2A  AGGCAGAA
+/scratch.global/nosha003/atac  MN1A_S3_R1_001 MN1A_S3_R2_001  MN1A  TCCTGAGC
+/scratch.global/nosha003/atac  MN2A_S4_R1_001 MN2A_S4_R2_001  MN2A  CGTACTAG
+/scratch.global/nosha003/atac  ON1A_S5_R1_001 ON1A_S5_R2_001  ON1A  GGACTCCT
+/scratch.global/nosha003/atac  ON2A_S6_R1_001 ON2A_S6_R2_001  ON2A  TAGGCATG
+/scratch.global/nosha003/atac  WN1A_S7_R1_001 WN1A_S7_R2_001  WN1A  CTCTCTAC
+/scratch.global/nosha003/atac  WN2A_S8_R1_001 WN2A_S8_R2_001  WN2A  CAGAGAGG
