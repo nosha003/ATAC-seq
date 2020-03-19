@@ -1,0 +1,71 @@
+# generate metaplot of data 
+# qsub -I -l walltime=1:00:00,nodes=1:ppn=6,mem=60G
+
+
+library(fields)
+#setwd("/scratch.global/nosha003/atac/counts/metaplot/")
+setwd("/Volumes/CBS/Groups/LAB-springer/Jaclyn/Graduate_projects/atac/Jan2020/")
+q1 <- read.table(file="BN1A.uniq.metaplot.bin.syntenic.txt", header=F, sep="\t")
+q2 <- read.table(file="BN2A.uniq.metaplot.bin.syntenic.txt", header=F, sep="\t")
+q3 <- read.table(file="MN1A.uniq.metaplot.bin.syntenic.txt", header=F, sep="\t")
+q4 <- read.table(file="MN2A.uniq.metaplot.bin.syntenic.txt", header=F, sep="\t")
+q5 <- read.table(file="ON1A.uniq.metaplot.bin.syntenic.txt", header=F, sep="\t")
+q6 <- read.table(file="ON2A.uniq.metaplot.bin.syntenic.txt", header=F, sep="\t")
+q7 <- read.table(file="WN1A.uniq.metaplot.bin.syntenic.txt", header=F, sep="\t")
+q8 <- read.table(file="B73_Leaf.uniq.metaplot.bin.syntenic.txt", header=F, sep="\t")
+
+colnames(q1) <- c("chr", "binstart", "binstop", "binid", "atac", "cpm", "TE", "TEstart", "TEend", "TEsize", "distance", "relative_distance", "real_distance", "category") 
+colnames(q2) <- c("chr", "binstart", "binstop", "binid", "atac", "cpm", "TE", "TEstart", "TEend", "TEsize", "distance", "relative_distance", "real_distance", "category") 
+colnames(q3) <- c("chr", "binstart", "binstop", "binid", "atac", "cpm", "TE", "TEstart", "TEend", "TEsize", "distance", "relative_distance", "real_distance", "category") 
+colnames(q4) <- c("chr", "binstart", "binstop", "binid", "atac", "cpm", "TE", "TEstart", "TEend", "TEsize", "distance", "relative_distance", "real_distance", "category") 
+colnames(q5) <- c("chr", "binstart", "binstop", "binid", "atac", "cpm", "TE", "TEstart", "TEend", "TEsize", "distance", "relative_distance", "real_distance", "category") 
+colnames(q6) <- c("chr", "binstart", "binstop", "binid", "atac", "cpm", "TE", "TEstart", "TEend", "TEsize", "distance", "relative_distance", "real_distance", "category") 
+colnames(q7) <- c("chr", "binstart", "binstop", "binid", "atac", "cpm", "TE", "TEstart", "TEend", "TEsize", "distance", "relative_distance", "real_distance", "category") 
+colnames(q8) <- c("chr", "binstart", "binstop", "binid", "atac", "cpm", "TE", "TEstart", "TEend", "TEsize", "distance", "relative_distance", "real_distance", "category") 
+
+#look just at flanking 1kb of FGS
+data.sub1=subset(q1,q1$relative_distance < 2000 & q1$relative_distance > -1000)
+data.sub2=subset(q2,q2$relative_distance < 2000 & q2$relative_distance > -1000)
+data.sub3=subset(q3,q3$relative_distance < 2000 & q3$relative_distance > -1000)
+data.sub4=subset(q4,q4$relative_distance < 2000 & q4$relative_distance > -1000)
+data.sub5=subset(q5,q5$relative_distance < 2000 & q5$relative_distance > -1000)
+data.sub6=subset(q6,q6$relative_distance < 2000 & q6$relative_distance > -1000)
+data.sub7=subset(q7,q7$relative_distance < 2000 & q7$relative_distance > -1000)
+data.sub8=subset(q8,q8$relative_distance < 2000 & q8$relative_distance > -1000)
+
+#get 100 bins across the relative gene distance and get stats on your data column
+stats.test1=stats.bin(data.sub1$relative_distance,data.sub1$cpm,N=600)
+stats.test2=stats.bin(data.sub2$relative_distance,data.sub2$cpm,N=600)
+stats.test3=stats.bin(data.sub3$relative_distance,data.sub3$cpm,N=600)
+stats.test4=stats.bin(data.sub4$relative_distance,data.sub4$cpm,N=600)
+stats.test5=stats.bin(data.sub5$relative_distance,data.sub5$cpm,N=600)
+stats.test6=stats.bin(data.sub6$relative_distance,data.sub6$cpm,N=600)
+stats.test7=stats.bin(data.sub7$relative_distance,data.sub7$cpm,N=600)
+stats.test8=stats.bin(data.sub8$relative_distance,data.sub8$cpm,N=600)
+
+p.1=cbind(matrix(stats.test1$centers,ncol=1),stats.test1$stats["mean",])
+p.2=cbind(matrix(stats.test2$centers,ncol=1),stats.test2$stats["mean",])
+p.3=cbind(matrix(stats.test3$centers,ncol=1),stats.test3$stats["mean",])
+p.4=cbind(matrix(stats.test4$centers,ncol=1),stats.test4$stats["mean",])
+p.5=cbind(matrix(stats.test5$centers,ncol=1),stats.test5$stats["mean",])
+p.6=cbind(matrix(stats.test6$centers,ncol=1),stats.test6$stats["mean",])
+p.7=cbind(matrix(stats.test7$centers,ncol=1),stats.test7$stats["mean",])
+p.8=cbind(matrix(stats.test8$centers,ncol=1),stats.test8$stats["mean",])
+
+# make plots for each gene set with CG, CHG, and CHH on the same plot
+
+pdf("atac_gene_metaplot_syntenic_uniq.pdf")
+par(mfrow=c(2,1))
+par(mar = rep(2,4))
+plot(x=NULL, y=NULL,xlim=c(-1000,2000),ylim=c(0,4),xlab="",ylab='read count',main='syntenic')
+lines(p.1,col=1,lwd=1)
+lines(p.2,col=2,lwd=1)
+lines(p.3,col=3,lwd=1)
+lines(p.4,col=4,lwd=1)
+lines(p.5,col=5,lwd=1)
+lines(p.6,col=6,lwd=1)
+lines(p.7,col=7,lwd=1)
+xline(0,lty=2,col='black')
+xline(1000,lty=2,col='black')
+legend("topright",c('BN1A', 'BN2A', 'MN1A', 'MN2A', 'ON1A', 'ON2A', 'WN1A'),col=c(1,2,3,4,5,6,7),lty=1,lwd=2,cex=0.7)
+dev.off()
