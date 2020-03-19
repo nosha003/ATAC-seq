@@ -1,0 +1,39 @@
+sed '1d' /scratch.global/nosha003/atac/counts/metaplot/BN1A.uniq.100bp.cpm2.bed | sort -k 1,1 -k 2,2n > /scratch.global/nosha003/atac/counts/metaplot/BN1A.uniq.100bp.cpm2.txt
+sed '1d' /scratch.global/nosha003/atac/counts/metaplot/BN2A.uniq.100bp.cpm2.bed | sort -k 1,1 -k 2,2n > /scratch.global/nosha003/atac/counts/metaplot/BN2A.uniq.100bp.cpm2.txt
+sed '1d' /scratch.global/nosha003/atac/counts/metaplot/MN1A.uniq.100bp.cpm2.bed | sort -k 1,1 -k 2,2n > /scratch.global/nosha003/atac/counts/metaplot/MN1A.uniq.100bp.cpm2.txt
+sed '1d' /scratch.global/nosha003/atac/counts/metaplot/MN2A.uniq.100bp.cpm2.bed | sort -k 1,1 -k 2,2n > /scratch.global/nosha003/atac/counts/metaplot/MN2A.uniq.100bp.cpm2.txt
+sed '1d' /scratch.global/nosha003/atac/counts/metaplot/ON1A.uniq.100bp.cpm2.bed | sort -k 1,1 -k 2,2n > /scratch.global/nosha003/atac/counts/metaplot/ON1A.uniq.100bp.cpm2.txt
+sed '1d' /scratch.global/nosha003/atac/counts/metaplot/ON2A.uniq.100bp.cpm2.bed | sort -k 1,1 -k 2,2n > /scratch.global/nosha003/atac/counts/metaplot/ON2A.uniq.100bp.cpm2.txt
+sed '1d' /scratch.global/nosha003/atac/counts/metaplot/WN1A.uniq.100bp.cpm2.bed | sort -k 1,1 -k 2,2n > /scratch.global/nosha003/atac/counts/metaplot/WN1A.uniq.100bp.cpm2.txt
+sed '1d' /scratch.global/nosha003/atac/counts/metaplot/WN2A.uniq.100bp.cpm2.bed | sort -k 1,1 -k 2,2n > /scratch.global/nosha003/atac/counts/metaplot/WN2A.uniq.100bp.cpm2.txt
+
+module load bedtools
+bedtools closest -D b -t first -k 1 -b /home/springer/nosha003/sarah/TEpolymorphism/genes_lists_for_metaplots_coordinates_sort.gff3 -a /scratch.global/nosha003/atac/counts/metaplot/BN1A.uniq.100bp.cpm2.txt > /scratch.global/nosha003/atac/counts/metaplot/BN1A.uniq.metaplot.txt
+bedtools closest -D b -t first -k 1 -b /home/springer/nosha003/sarah/TEpolymorphism/genes_lists_for_metaplots_coordinates_sort.gff3 -a /scratch.global/nosha003/atac/counts/metaplot/BN2A.uniq.100bp.cpm2.txt > /scratch.global/nosha003/atac/counts/metaplot/BN2A.uniq.metaplot.txt
+bedtools closest -D b -t first -k 1 -b /home/springer/nosha003/sarah/TEpolymorphism/genes_lists_for_metaplots_coordinates_sort.gff3 -a /scratch.global/nosha003/atac/counts/metaplot/MN1A.uniq.100bp.cpm2.txt > /scratch.global/nosha003/atac/counts/metaplot/MN1A.uniq.metaplot.txt
+bedtools closest -D b -t first -k 1 -b /home/springer/nosha003/sarah/TEpolymorphism/genes_lists_for_metaplots_coordinates_sort.gff3 -a /scratch.global/nosha003/atac/counts/metaplot/MN2A.uniq.100bp.cpm2.txt > /scratch.global/nosha003/atac/counts/metaplot/MN2A.uniq.metaplot.txt
+bedtools closest -D b -t first -k 1 -b /home/springer/nosha003/sarah/TEpolymorphism/genes_lists_for_metaplots_coordinates_sort.gff3 -a /scratch.global/nosha003/atac/counts/metaplot/ON1A.uniq.100bp.cpm2.txt > /scratch.global/nosha003/atac/counts/metaplot/ON1A.uniq.metaplot.txt
+bedtools closest -D b -t first -k 1 -b /home/springer/nosha003/sarah/TEpolymorphism/genes_lists_for_metaplots_coordinates_sort.gff3 -a /scratch.global/nosha003/atac/counts/metaplot/ON2A.uniq.100bp.cpm2.txt > /scratch.global/nosha003/atac/counts/metaplot/ON2A.uniq.metaplot.txt
+bedtools closest -D b -t first -k 1 -b /home/springer/nosha003/sarah/TEpolymorphism/genes_lists_for_metaplots_coordinates_sort.gff3 -a /scratch.global/nosha003/atac/counts/metaplot/WN1A.uniq.100bp.cpm2.txt > /scratch.global/nosha003/atac/counts/metaplot/WN1A.uniq.metaplot.txt
+bedtools closest -D b -t first -k 1 -b /home/springer/nosha003/sarah/TEpolymorphism/genes_lists_for_metaplots_coordinates_sort.gff3 -a /scratch.global/nosha003/atac/counts/metaplot/WN2A.uniq.100bp.cpm2.txt > /scratch.global/nosha003/atac/counts/metaplot/WN2A.uniq.metaplot.txt
+
+# dataframe
+perl /home/springer/nosha003/scripts/atac_metaplot_gene.pl -i /scratch.global/nosha003/atac/counts/metaplot/BN1A.uniq.metaplot.txt -o /scratch.global/nosha003/atac/counts/metaplot/BN1A.uniq.metaplot.bin.txt
+perl /home/springer/nosha003/scripts/atac_metaplot_gene.pl -i /scratch.global/nosha003/atac/counts/metaplot/BN2A.uniq.metaplot.txt -o /scratch.global/nosha003/atac/counts/metaplot/BN2A.uniq.metaplot.bin.txt
+perl /home/springer/nosha003/scripts/atac_metaplot_gene.pl -i /scratch.global/nosha003/atac/counts/metaplot/MN1A.uniq.metaplot.txt -o /scratch.global/nosha003/atac/counts/metaplot/MN1A.uniq.metaplot.bin.txt
+perl /home/springer/nosha003/scripts/atac_metaplot_gene.pl -i /scratch.global/nosha003/atac/counts/metaplot/MN2A.uniq.metaplot.txt -o /scratch.global/nosha003/atac/counts/metaplot/MN2A.uniq.metaplot.bin.txt
+perl /home/springer/nosha003/scripts/atac_metaplot_gene.pl -i /scratch.global/nosha003/atac/counts/metaplot/ON1A.uniq.metaplot.txt -o /scratch.global/nosha003/atac/counts/metaplot/ON1A.uniq.metaplot.bin.txt
+perl /home/springer/nosha003/scripts/atac_metaplot_gene.pl -i /scratch.global/nosha003/atac/counts/metaplot/ON2A.uniq.metaplot.txt -o /scratch.global/nosha003/atac/counts/metaplot/ON2A.uniq.metaplot.bin.txt
+perl /home/springer/nosha003/scripts/atac_metaplot_gene.pl -i /scratch.global/nosha003/atac/counts/metaplot/WN1A.uniq.metaplot.txt -o /scratch.global/nosha003/atac/counts/metaplot/WN1A.uniq.metaplot.bin.txt
+perl /home/springer/nosha003/scripts/atac_metaplot_gene.pl -i /scratch.global/nosha003/atac/counts/metaplot/WN2A.uniq.metaplot.txt -o /scratch.global/nosha003/atac/counts/metaplot/WN2A.uniq.metaplot.bin.txt
+
+# metaplots
+awk '{if ($14 == "syntenic") print $0}' /scratch.global/nosha003/atac/counts/metaplot/BN1A.uniq.metaplot.bin.txt > /scratch.global/nosha003/atac/counts/metaplot/BN1A.uniq.metaplot.bin.syntenic.txt
+awk '{if ($14 == "syntenic") print $0}' /scratch.global/nosha003/atac/counts/metaplot/BN2A.uniq.metaplot.bin.txt > /scratch.global/nosha003/atac/counts/metaplot/BN2A.uniq.metaplot.bin.syntenic.txt
+awk '{if ($14 == "syntenic") print $0}' /scratch.global/nosha003/atac/counts/metaplot/MN1A.uniq.metaplot.bin.txt > /scratch.global/nosha003/atac/counts/metaplot/MN1A.uniq.metaplot.bin.syntenic.txt
+awk '{if ($14 == "syntenic") print $0}' /scratch.global/nosha003/atac/counts/metaplot/MN2A.uniq.metaplot.bin.txt > /scratch.global/nosha003/atac/counts/metaplot/MN2A.uniq.metaplot.bin.syntenic.txt
+awk '{if ($14 == "syntenic") print $0}' /scratch.global/nosha003/atac/counts/metaplot/ON1A.uniq.metaplot.bin.txt > /scratch.global/nosha003/atac/counts/metaplot/ON1A.uniq.metaplot.bin.syntenic.txt
+awk '{if ($14 == "syntenic") print $0}' /scratch.global/nosha003/atac/counts/metaplot/ON2A.uniq.metaplot.bin.txt > /scratch.global/nosha003/atac/counts/metaplot/ON2A.uniq.metaplot.bin.syntenic.txt
+awk '{if ($14 == "syntenic") print $0}' /scratch.global/nosha003/atac/counts/metaplot/WN1A.uniq.metaplot.bin.txt > /scratch.global/nosha003/atac/counts/metaplot/WN1A.uniq.metaplot.bin.syntenic.txt
+awk '{if ($14 == "syntenic") print $0}' /scratch.global/nosha003/atac/counts/metaplot/WN2A.uniq.metaplot.bin.txt > /scratch.global/nosha003/atac/counts/metaplot/WN2A.uniq.metaplot.bin.syntenic.txt
+
